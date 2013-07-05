@@ -1,16 +1,32 @@
 package mu.validation.domain.utils.status.validation;
 
+import javax.validation.groups.Default;
+
 public interface StatusValidationGroups {
 
-	public interface DraftStatus{
+	interface DraftGroup extends Default{
 
 	}
 
-	public interface SignedStatus extends DraftStatus{
+	interface SignedGroup extends DraftGroup {
 
 	}
 
-	public interface
+	interface ActiveGroup extends SignedGroup {
+
+	}
+
+	interface CanceledGroup extends Default{
+
+	}
+
+	interface EndedGroup extends ActiveGroup{
+
+	}
+
+	interface DishonoredGroup extends ActiveGroup{
+
+	}
 
 
 

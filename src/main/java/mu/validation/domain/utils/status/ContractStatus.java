@@ -1,8 +1,10 @@
 package mu.validation.domain.utils.status;
 
+import mu.validation.domain.utils.status.validation.StatusValidationGroups;
+
 public enum ContractStatus {
 
-	DRAFT {
+	DRAFT(StatusValidationGroups.DraftGroup.class) {
 		@Override
 		public void sign(ContractStatusContext contractStatusContext) {
 			contractStatusContext.setContractStatus(SIGNED);
@@ -14,7 +16,7 @@ public enum ContractStatus {
 		}
 	},
 
-	SIGNED {
+	SIGNED(StatusValidationGroups.SignedGroup.class) {
 		@Override
 		public void dishonor(final ContractStatusContext contractStatusContext) {
 			contractStatusContext.setContractStatus(DISHONORED);
@@ -27,7 +29,7 @@ public enum ContractStatus {
 
 	},
 
-	ACTIVE{
+	ACTIVE(StatusValidationGroups.ActiveGroup.class){
 
 		@Override
 		public void dishonor(final ContractStatusContext contractStatusContext) {
@@ -41,15 +43,25 @@ public enum ContractStatus {
 
 	},
 
-	CANCELED,
-	ENDED,
+	CANCELED(StatusValidationGroups.CanceledGroup.class),
+	ENDED(StatusValidationGroups.EndedGroup.class),
 
-	DISHONORED {
+	DISHONORED(StatusValidationGroups.DraftGroup.class) {
 		@Override
 		public void cancel(final ContractStatusContext contractStatusContext) {
 			contractStatusContext.setContractStatus(CANCELED);
 		}
 	};
+
+	private final Class<?> validationGroup;
+
+	private ContractStatus(Class<?> validationGroup){
+		this.validationGroup = validationGroup;
+	}
+
+	public Class<?> getValidationGroup() {
+		return validationGroup;
+	}
 
 	public void sign(ContractStatusContext contractStatusContext) {
 		throw new IllegalStateException("This state [" + this.name() + "] does not allow to sign");

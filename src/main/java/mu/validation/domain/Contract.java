@@ -2,9 +2,11 @@ package mu.validation.domain;
 
 import java.util.Date;
 import javax.validation.constraints.NotNull;
+import mu.validation.domain.utils.Person;
 import mu.validation.domain.utils.status.ContractStatus;
 import mu.validation.domain.utils.status.ContractStatusContext;
-import mu.validation.domain.utils.Person;
+import mu.validation.domain.utils.status.validation.StatusValidationGroups;
+import mu.validation.service.groups.CustomValidationGroups;
 
 public class Contract {
 
@@ -12,12 +14,15 @@ public class Contract {
 
 	private ContractStatusContext statusContext;
 
-	@NotNull
+	@NotNull(groups = StatusValidationGroups.DraftGroup.class)
 	private Date startDate;
 
 	private Date approveDate;
 
 	private Date endDate;
+
+	@NotNull(groups = CustomValidationGroups.A.class)
+	private String fieldToBeCustomValidated;
 
 	protected Contract() {
 		statusContext = new ContractStatusContext();
@@ -82,5 +87,13 @@ public class Contract {
 
 	public Class<?> getValidationGroup() {
 		return getContractStatus().getValidationGroup();
+	}
+
+	public String getFieldToBeCustomValidated() {
+		return fieldToBeCustomValidated;
+	}
+
+	public void setFieldToBeCustomValidated(final String fieldToBeCustomValidated) {
+		this.fieldToBeCustomValidated = fieldToBeCustomValidated;
 	}
 }

@@ -6,22 +6,28 @@ import mu.validation.domain.Contract;
 
 public class ConstraintViolationException extends RuntimeException {
 
-	private Set<ConstraintViolation<Contract>> constraints;
+	public static final String LINE = "--------------------------------------------";
+
+	private final Set<ConstraintViolation<Contract>> constraints;
 
 	public ConstraintViolationException(final Set<ConstraintViolation<Contract>> constraints) {
 		this.constraints = constraints;
 	}
 
+	public Set<ConstraintViolation<Contract>> getConstraints() {
+		return constraints;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("ConstraintViolationException with violations: [");
+		sb.append(LINE).append('\n');
+		sb.append("ConstraintViolationException with violations:\n");
 		for (ConstraintViolation<Contract> constraint : constraints) {
-			sb.append(constraint.getMessage());
-			sb.append(", ");
+			sb.append(constraint.getPropertyPath()).append(':').append(constraint.getMessage());
+			sb.append('\n');
 		}
-		sb.delete(sb.length()-2, sb.length());
-		sb.append(']');
+		sb.append(LINE);
 		return sb.toString();
 	}
 }

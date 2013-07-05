@@ -89,6 +89,12 @@
 			<artifactId>catch-exception</artifactId>
 			<version>1.0.4</version>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mockito</groupId>
+					<artifactId>mockito-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.easytesting</groupId>
@@ -133,6 +139,13 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${dependency.version.log4j}</version>
+		</dependency>
+
+		<!-- UTILS -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.1</version>
 		</dependency>
 
 

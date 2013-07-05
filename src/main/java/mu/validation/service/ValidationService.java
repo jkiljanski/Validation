@@ -27,7 +27,11 @@ public class ValidationService {
 	public void validateContract(Contract contract){
 		final Class<?> validationGroup = contract.getValidationGroup();
 
-		final Set<ConstraintViolation<Contract>> constraints = validator.validate(contract, validationGroup);
+		validateWithCustomGroup(contract, validationGroup);
+	}
+
+	public void validateWithCustomGroup(final Contract contract, final Class<?> ... validationGroups) {
+		final Set<ConstraintViolation<Contract>> constraints = validator.validate(contract, validationGroups);
 
 		if (constraints.isEmpty()){
 			return;
@@ -35,6 +39,5 @@ public class ValidationService {
 
 		throw new ConstraintViolationException(constraints);
 	}
-
 
 }

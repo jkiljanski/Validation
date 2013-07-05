@@ -1,6 +1,8 @@
 package mu.validation.domain;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import mu.validation.domain.utils.status.ContractStatus;
 import mu.validation.domain.utils.status.ContractStatusContext;
 import mu.validation.domain.utils.Person;
 
@@ -10,13 +12,14 @@ public class Contract {
 
 	private ContractStatusContext statusContext;
 
+	@NotNull
 	private Date startDate;
 
 	private Date approveDate;
 
 	private Date endDate;
 
-	public Contract() {
+	protected Contract() {
 		statusContext = new ContractStatusContext();
 	}
 
@@ -63,5 +66,21 @@ public class Contract {
 
 	public void setEndDate(final Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public Date getApproveDate() {
+		return approveDate;
+	}
+
+	public void setApproveDate(final Date approveDate) {
+		this.approveDate = approveDate;
+	}
+
+	public ContractStatus getContractStatus() {
+		return statusContext.getContractStatus();
+	}
+
+	public Class<?> getValidationGroup() {
+		return getContractStatus().getValidationGroup();
 	}
 }

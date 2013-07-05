@@ -4,6 +4,9 @@ public class ContractStatusContext {
 
 	private ContractStatus contractStatus;
 
+	public ContractStatusContext() {
+		this.contractStatus = ContractStatus.DRAFT;
+	}
 
 	public void sign() {
 		contractStatus.sign(this);

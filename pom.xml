@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>Validation</groupId>
-    <artifactId>Validation</artifactId>
-    <version>1.0-SNAPSHOT</version>
+	<groupId>Validation</groupId>
+	<artifactId>Validation</artifactId>
+	<version>1.0-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>
-		<groupId>com.google.guava</groupId>
-		<artifactId>guava</artifactId>
-		<version>13.0.1</version>
-	</dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>13.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -79,11 +79,11 @@
 			<version>6.8</version>
 		</dependency>
 		<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-all</artifactId>
-				<version>1.9.5</version>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
 			<scope>test</scope>
-			</dependency>
+		</dependency>
 		<dependency>
 			<groupId>com.googlecode.catch-exception</groupId>
 			<artifactId>catch-exception</artifactId>
@@ -96,7 +96,44 @@
 			<version>1.4</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.0.5.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
+		<!-- LOGGING -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${dependency.version.slf4j}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${dependency.version.slf4j}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${dependency.version.slf4j}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>${dependency.version.slf4j}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${dependency.version.log4j}</version>
+		</dependency>
 
 
 	</dependencies>
@@ -104,6 +141,8 @@
 	<properties>
 		<dependency.version.spring>3.2.2.RELEASE</dependency.version.spring>
 		<dependency.version.hibernate>4.0.1.Final</dependency.version.hibernate>
-			</properties>
-    
+		<dependency.version.slf4j>1.6.1</dependency.version.slf4j>
+		<dependency.version.log4j>1.2.16</dependency.version.log4j>
+	</properties>
+
 </project>

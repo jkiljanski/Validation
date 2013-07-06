@@ -34,7 +34,7 @@ public class R04_RunBatchValidationTest extends AbstractTestNGSpringContextTests
 		contract.sign();
 		contract.approve();
 
-		validationService.validateContract(contract);
+		validationService.validateWithCustomGroup(contract);
 
 	}
 

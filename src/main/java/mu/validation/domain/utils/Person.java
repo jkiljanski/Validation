@@ -1,11 +1,20 @@
 package mu.validation.domain.utils;
 
+import javax.validation.constraints.NotNull;
+import mu.validation.annotations.MatureOrWithCustodian;
+import mu.validation.annotations.MinAge;
+
+@MatureOrWithCustodian
 public class Person {
 
+	@NotNull
 	private String firstName;
 
+	@NotNull
 	private String secondName;
 
+	@NotNull
+	@MinAge(value=5)
 	private Age age;
 
 	private Person custodian;

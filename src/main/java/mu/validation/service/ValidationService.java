@@ -21,7 +21,6 @@ public class ValidationService {
 	public ValidationService(final Validator validator) {
 		this.validator = validator;
 
-
 	}
 
 	public void validateContract(Contract contract){

@@ -12,6 +12,10 @@ public class ContractStatusContext {
 		contractStatus.sign(this);
 	}
 
+	public void approve() {
+		contractStatus.approve(this);
+	}
+
 	public void cancel() {
 		contractStatus.cancel(this);
 	}
@@ -25,7 +29,7 @@ public class ContractStatusContext {
 	}
 
 	void setContractStatus(final ContractStatus state) {
-		this.contractStatus = contractStatus;
+		this.contractStatus = state;
 	}
 
 	public ContractStatus getContractStatus() {

@@ -1,15 +1,20 @@
 package mu.validation.domain;
 
 import java.util.Date;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import mu.validation.annotations.AdditionalContractValidation;
 import mu.validation.domain.utils.Person;
 import mu.validation.domain.utils.status.ContractStatus;
 import mu.validation.domain.utils.status.ContractStatusContext;
 import mu.validation.domain.utils.status.validation.StatusValidationGroups;
 import mu.validation.service.groups.CustomValidationGroups;
 
+@AdditionalContractValidation(groups = StatusValidationGroups.ActiveGroup.class)
 public class Contract {
 
+	@NotNull
+	@Valid
 	private Person farmer;
 
 	private ContractStatusContext statusContext;
@@ -28,13 +33,17 @@ public class Contract {
 		statusContext = new ContractStatusContext();
 	}
 
-	public Contract(final Person farmer, final ContractStatusContext statusContext) {
+	public Contract(final Person farmer) {
 		this.farmer = farmer;
-		this.statusContext = statusContext;
+		this.statusContext = new ContractStatusContext();
 	}
 
 	public void sign() {
 		statusContext.sign();
+	}
+
+	public void approve(){
+		statusContext.approve();
 	}
 
 	public void dishonor() {

@@ -1,19 +1,20 @@
 package mu.validation.domain;
 
-import static org.mockito.Mockito.mock;
+import static mu.validation.utils.DateUtils.midnight;
 
 import java.util.Date;
-import mu.validation.domain.utils.Person;
+import mu.validation.domain.utils.PersonBuilder;
 
 public class ContractBuilder {
 
-	private Contract contract = new Contract();
+	private final Contract contract;
 
 	private ContractBuilder() {
+		contract = new Contract();
 	}
 
-	public static ContractBuilder builder(){
-		return new ContractBuilder();
+	public static ContractBuilder builderWithStartDate(){
+		return new ContractBuilder().withStartDate(midnight(2013,06,06));
 	}
 
 	public ContractBuilder withStartDate(Date date) {
@@ -26,11 +27,11 @@ public class ContractBuilder {
 		return this;
 	}
 
-	public ContractBuilder withMockedFarmer(){
-		contract.setFarmer(mock(Person.class));
-
+	public ContractBuilder withApproveDate(Date date) {
+		contract.setApproveDate(date);
 		return this;
 	}
+
 
 	public ContractBuilder withFieldToBeCustomValidated(String string){
 		contract.setFieldToBeCustomValidated(string);
@@ -41,4 +42,8 @@ public class ContractBuilder {
 		return contract;
 	}
 
+	public ContractBuilder withDefaultPerson() {
+		contract.setFarmer(PersonBuilder.defaultPerson().build());
+		return this;
+	}
 }

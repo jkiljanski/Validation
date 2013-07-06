@@ -17,16 +17,16 @@ public enum ContractStatus {
 	},
 
 	SIGNED(StatusValidationGroups.SignedGroup.class) {
-		@Override
-		public void dishonor(final ContractStatusContext contractStatusContext) {
-			contractStatusContext.setContractStatus(DISHONORED);
-		}
 
 		@Override
 		public void cancel(final ContractStatusContext contractStatusContext) {
 			contractStatusContext.setContractStatus(CANCELED);
 		}
 
+		@Override
+		public void approve(final ContractStatusContext contractStatusContext) {
+			contractStatusContext.setContractStatus(ACTIVE);
+		}
 	},
 
 	ACTIVE(StatusValidationGroups.ActiveGroup.class){
@@ -67,7 +67,7 @@ public enum ContractStatus {
 		throw new IllegalStateException("This state [" + this.name() + "] does not allow to sign");
 	}
 
-	public void aprove(ContractStatusContext contractStatusContext) {
+	public void approve(ContractStatusContext contractStatusContext) {
 		throw new IllegalStateException("This state [" + this.name() + "] does not allow to approve");
 	}
 

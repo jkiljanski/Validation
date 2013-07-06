@@ -1,10 +1,8 @@
 package mu.validation.run;
 
 import mu.validation.domain.Contract;
-import mu.validation.domain.utils.Person;
-import mu.validation.domain.utils.status.ContractStatusContext;
+import mu.validation.domain.ContractBuilder;
 import mu.validation.service.ValidationService;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,13 +11,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(locations = "commonRun-context.xml")
-public class RunStatusValidationTest extends AbstractTestNGSpringContextTests {
+public class R02_RunStatusValidationTest extends AbstractTestNGSpringContextTests {
 
 	@Autowired
 	private ValidationService validationService;
-
-	@Mock
-	private Person farmerMock;
 
 	@BeforeMethod
 	public void setUp() {
@@ -29,7 +24,7 @@ public class RunStatusValidationTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void shouldValidateDraft() {
 
-		final Contract contract = new Contract(farmerMock, new ContractStatusContext());
+		final Contract contract = ContractBuilder.builderWithStartDate().withDefaultPerson().build();
 		validationService.validateContract(contract);
 
 	}

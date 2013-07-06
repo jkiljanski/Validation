@@ -2,13 +2,20 @@ package mu.validation.domain.utils;
 
 public class Age {
 
-	private int age;
+	private final int age;
 
-	public int getAge() {
-		return age;
-	}
+	private int MATURE_AGE = 18;
 
-	public void setAge(final int age) {
+	public Age(final int age) {
 		this.age = age;
 	}
+	
+	public boolean isMature(){
+		return !isYoungerThan(MATURE_AGE);
+	}
+
+	public boolean isYoungerThan(int years) {
+		return age < years;
+	}
+
 }

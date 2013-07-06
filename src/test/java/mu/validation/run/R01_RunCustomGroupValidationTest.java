@@ -1,11 +1,10 @@
 package mu.validation.run;
 
+import javax.validation.groups.Default;
 import mu.validation.domain.Contract;
-import mu.validation.domain.utils.Person;
-import mu.validation.domain.utils.status.ContractStatusContext;
+import mu.validation.domain.ContractBuilder;
 import mu.validation.service.ValidationService;
 import mu.validation.service.groups.CustomValidationGroups;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,20 +13,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(locations = "commonRun-context.xml")
-public class RunCustomGroupValidationTest extends AbstractTestNGSpringContextTests {
+public class R01_RunCustomGroupValidationTest extends AbstractTestNGSpringContextTests {
 
 	@Autowired
 	private ValidationService validationService;
-
-	@Mock
-	private Person farmerMock;
 
 	private Contract contract;
 
 	@BeforeMethod
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		contract = new Contract(farmerMock, new ContractStatusContext());
+		contract = ContractBuilder.builderWithStartDate().withDefaultPerson().build();
 	}
 
 	@Test
@@ -55,6 +51,13 @@ public class RunCustomGroupValidationTest extends AbstractTestNGSpringContextTes
 	public void shouldValidateForNoGroup() {
 
 		validationService.validateWithCustomGroup(contract);
+
+	}
+
+	@Test
+	public void shouldValidateForDefaultGroup() {
+
+		validationService.validateWithCustomGroup(contract, Default.class);
 
 	}
 

@@ -12,7 +12,7 @@ public class NotForZenonAdditionalValidator implements AdditionalContractValidat
 
 	@Override
 	public void validate(final Contract contract, final ConstraintValidatorContext constraintValidatorContext) {
-		final Person farmer = contract.getFarmer();
+		final Person farmer = contract.getPerson();
 		if(farmer == null){
 			return;
 		}

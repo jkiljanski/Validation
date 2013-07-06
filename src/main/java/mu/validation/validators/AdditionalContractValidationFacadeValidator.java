@@ -8,7 +8,7 @@ import mu.validation.domain.Contract;
 import mu.validation.validators.additional.AdditionalContractValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AdditionalContractValidationValidator implements ConstraintValidator<AdditionalContractValidation, Contract> {
+public class AdditionalContractValidationFacadeValidator implements ConstraintValidator<AdditionalContractValidation, Contract> {
 
 	@Autowired
 	private List<AdditionalContractValidator> additionalValidators;
@@ -19,10 +19,10 @@ public class AdditionalContractValidationValidator implements ConstraintValidato
 
 	@Override
 	public boolean isValid(final Contract value, final ConstraintValidatorContext context) {
-		context.disableDefaultConstraintViolation();
+		//context.disableDefaultConstraintViolation();
 		for (AdditionalContractValidator additionalValidator : additionalValidators) {
 			additionalValidator.validate(value, context);
 		}
-		return false;
+		return true;
 	}
 }

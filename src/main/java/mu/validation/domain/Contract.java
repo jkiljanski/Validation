@@ -17,13 +17,14 @@ public class Contract {
 
 	@NotNull
 	@Valid
-	private Person farmer;
+	private Person person;
 
 	private ContractStatusContext statusContext;
 
 	@NotNull(groups = StatusValidationGroups.DraftGroup.class)
 	private Date startDate;
 
+	@NotNull(groups = StatusValidationGroups.ActiveGroup.class)
 	private Date approveDate;
 
 	@Null(groups = OtherGroups.BeforeMovingGroup.class)
@@ -36,8 +37,8 @@ public class Contract {
 		statusContext = new ContractStatusContext();
 	}
 
-	public Contract(final Person farmer) {
-		this.farmer = farmer;
+	public Contract(final Person person) {
+		this.person = person;
 		this.statusContext = new ContractStatusContext();
 	}
 
@@ -61,12 +62,12 @@ public class Contract {
 		statusContext.end();
 	}
 
-	public Person getFarmer() {
-		return farmer;
+	public Person getPerson() {
+		return person;
 	}
 
-	public void setFarmer(final Person farmer) {
-		this.farmer = farmer;
+	public void setPerson(final Person person) {
+		this.person = person;
 	}
 
 	public Date getStartDate() {

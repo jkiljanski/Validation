@@ -14,7 +14,7 @@ public class MoveContractService {
 
 	public void moveContract(Contract contract, Person newPerson) {
 		validateContractCanBeMoved(contract);
-		contract.setFarmer(newPerson);
+		contract.setPerson(newPerson);
 	}
 
 	private void validateContractCanBeMoved(final Contract contract) {

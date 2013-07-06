@@ -29,7 +29,7 @@ public class R05_RunOrtogonalValidationTest extends AbstractTestNGSpringContextT
 	@Test
 	public void shouldValidateWithEverythingSet() {
 
-		final Contract contract = ContractBuilder.builderWithStartDate().withDefaultPerson().build();
+		final Contract contract = ContractBuilder.builderWithStartDate().withZenonPerson().build();
 		moveContractService.moveContract(contract, mock(Person.class));
 
 	}
@@ -37,7 +37,7 @@ public class R05_RunOrtogonalValidationTest extends AbstractTestNGSpringContextT
 	@Test
 	public void shouldNotValidateWithEndDateSet() {
 
-		final Contract contract = ContractBuilder.builderWithStartDate().withDefaultPerson().build();
+		final Contract contract = ContractBuilder.builderWithStartDate().withZenonPerson().build();
 		contract.setEndDate(midnight(2013,07,13));
 		moveContractService.moveContract(contract, mock(Person.class));
 

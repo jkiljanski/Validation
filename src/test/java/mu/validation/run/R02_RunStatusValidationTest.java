@@ -1,5 +1,7 @@
 package mu.validation.run;
 
+import static mu.validation.utils.DateUtils.midnight;
+
 import mu.validation.domain.Contract;
 import mu.validation.domain.ContractBuilder;
 import mu.validation.service.ValidationService;
@@ -24,7 +26,37 @@ public class R02_RunStatusValidationTest extends AbstractTestNGSpringContextTest
 	@Test
 	public void shouldValidateDraft() {
 
-		final Contract contract = ContractBuilder.builderWithStartDate().withDefaultPerson().build();
+		final Contract contract = ContractBuilder.builderWithStartDate().withMieciuPerson().build();
+		validationService.validateContract(contract);
+
+	}
+
+	@Test
+	public void shouldNotValidateDraftOnLackOfPerson() {
+
+		final Contract contract = ContractBuilder.builderWithStartDate().build();
+		validationService.validateContract(contract);
+
+	}
+
+
+
+	@Test
+	public void shouldValidateActive() {
+
+		final Contract contract = ContractBuilder.builderWithStartDate().withMieciuPerson().withApproveDate(midnight(2013, 8, 8)).build();
+		contract.sign();
+		contract.approve();
+		validationService.validateContract(contract);
+
+	}
+
+	@Test
+	public void shouldNotValidateActiveOnNoApproveDate() {
+
+		final Contract contract = ContractBuilder.builderWithStartDate().withMieciuPerson().build();
+		contract.sign();
+		contract.approve();
 		validationService.validateContract(contract);
 
 	}

@@ -3,6 +3,7 @@ package mu.validation.domain;
 import static mu.validation.utils.DateUtils.midnight;
 
 import java.util.Date;
+import mu.validation.domain.utils.Person;
 import mu.validation.domain.utils.PersonBuilder;
 
 public class ContractBuilder {
@@ -14,7 +15,7 @@ public class ContractBuilder {
 	}
 
 	public static ContractBuilder builderWithStartDate(){
-		return new ContractBuilder().withStartDate(midnight(2013,06,06));
+		return new ContractBuilder().withStartDate(midnight(2013,6,6));
 	}
 
 	public ContractBuilder withStartDate(Date date) {
@@ -42,8 +43,15 @@ public class ContractBuilder {
 		return contract;
 	}
 
-	public ContractBuilder withDefaultPerson() {
-		contract.setFarmer(PersonBuilder.defaultPerson().build());
+	public ContractBuilder withZenonPerson() {
+		contract.setPerson(PersonBuilder.defaultPerson().build());
+		return this;
+	}
+
+	public ContractBuilder withMieciuPerson() {
+		final Person person = PersonBuilder.defaultPerson().build();
+		person.setFirstName("Mieciu");
+		contract.setPerson(person);
 		return this;
 	}
 }

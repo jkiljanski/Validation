@@ -23,7 +23,7 @@ public class R03_RunPersonValidationTest extends AbstractTestNGSpringContextTest
 	@BeforeMethod
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		contract = ContractBuilder.builderWithStartDate().withDefaultPerson().build();
+		contract = ContractBuilder.builderWithStartDate().withZenonPerson().build();
 	}
 
 	@Test
@@ -36,7 +36,7 @@ public class R03_RunPersonValidationTest extends AbstractTestNGSpringContextTest
 	@Test
 	public void shouldNotValidatePersonBecauseOfNoFirstName() {
 
-		contract.getFarmer().setFirstName(null);
+		contract.getPerson().setFirstName(null);
 
 		validationService.validateContract(contract);
 
@@ -45,8 +45,8 @@ public class R03_RunPersonValidationTest extends AbstractTestNGSpringContextTest
 	@Test
 	public void shouldNotValidatePersonBecauseOfTooYoungAge() {
 
-		contract.getFarmer().setAge(new Age(4));
-		contract.getFarmer().setCustodian(PersonBuilder.defaultPerson().build());
+		contract.getPerson().setAge(new Age(4));
+		contract.getPerson().setCustodian(PersonBuilder.defaultPerson().build());
 
 		validationService.validateContract(contract);
 
@@ -55,7 +55,7 @@ public class R03_RunPersonValidationTest extends AbstractTestNGSpringContextTest
 	@Test
 	public void shouldNotValidatePersonBecauseNotMatureYetAndNoCustodian() {
 
-		contract.getFarmer().setAge(new Age(17));
+		contract.getPerson().setAge(new Age(17));
 
 		validationService.validateContract(contract);
 

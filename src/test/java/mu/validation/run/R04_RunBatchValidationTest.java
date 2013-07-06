@@ -25,8 +25,8 @@ public class R04_RunBatchValidationTest extends AbstractTestNGSpringContextTests
 		MockitoAnnotations.initMocks(this);
 		contract = ContractBuilder
 				.builderWithStartDate()
-				.withDefaultPerson()
-				.withApproveDate(midnight(2013,06,06)).build();
+				.withZenonPerson()
+				.withApproveDate(midnight(2013,6,6)).build();
 	}
 
 	@Test

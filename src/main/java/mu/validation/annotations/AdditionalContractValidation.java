@@ -7,11 +7,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import mu.validation.validators.AdditionalContractValidationValidator;
+import mu.validation.validators.AdditionalContractValidationFacadeValidator;
 
 @Target({TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = {AdditionalContractValidationValidator.class})
+@Constraint(validatedBy = {AdditionalContractValidationFacadeValidator.class})
 public @interface AdditionalContractValidation {
 
 	String message() default "{no-message}";

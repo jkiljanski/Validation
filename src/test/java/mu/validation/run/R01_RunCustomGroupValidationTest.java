@@ -23,7 +23,7 @@ public class R01_RunCustomGroupValidationTest extends AbstractTestNGSpringContex
 	@BeforeMethod
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		contract = ContractBuilder.builderWithStartDate().withDefaultPerson().build();
+		contract = ContractBuilder.builderWithStartDate().withZenonPerson().build();
 	}
 
 	@Test

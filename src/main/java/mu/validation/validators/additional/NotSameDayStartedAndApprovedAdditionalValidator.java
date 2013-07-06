@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class NotSameDayStartedAndApprovedAdditionalValidator implements AdditionalContractValidator{
 
-	public static final String MESSAGE_TEMPLATE = "validation.constraints.NotSameDayStartedAndApprovedAdditionalValidator.message";
+	public static final String MESSAGE_TEMPLATE = "{validation.constraints.NotSameDayStartedAndApprovedAdditionalValidator.message}";
 
 	@Override
 	public void validate(final Contract contract, final ConstraintValidatorContext constraintValidatorContext) {

@@ -1,8 +1,6 @@
-package mu.validation.service.groups;
+package mu.validation.domain.groups;
 
 public interface CustomValidationGroups {
-
-
 
 	interface A{
 

@@ -3,12 +3,14 @@ package mu.validation.domain;
 import java.util.Date;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import mu.validation.annotations.AdditionalContractValidation;
+import mu.validation.domain.groups.CustomValidationGroups;
+import mu.validation.domain.groups.OtherGroups;
 import mu.validation.domain.utils.Person;
 import mu.validation.domain.utils.status.ContractStatus;
 import mu.validation.domain.utils.status.ContractStatusContext;
 import mu.validation.domain.utils.status.validation.StatusValidationGroups;
-import mu.validation.service.groups.CustomValidationGroups;
 
 @AdditionalContractValidation(groups = StatusValidationGroups.ActiveGroup.class)
 public class Contract {
@@ -24,6 +26,7 @@ public class Contract {
 
 	private Date approveDate;
 
+	@Null(groups = OtherGroups.BeforeMovingGroup.class)
 	private Date endDate;
 
 	@NotNull(groups = CustomValidationGroups.A.class)

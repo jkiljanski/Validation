@@ -3,8 +3,8 @@ package mu.validation.run;
 import javax.validation.groups.Default;
 import mu.validation.domain.Contract;
 import mu.validation.domain.ContractBuilder;
+import mu.validation.domain.groups.CustomValidationGroups;
 import mu.validation.service.ValidationService;
-import mu.validation.service.groups.CustomValidationGroups;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,14 +27,14 @@ public class R01_RunCustomGroupValidationTest extends AbstractTestNGSpringContex
 	}
 
 	@Test
-	public void shouldValidateForA() {
+	public void shouldNotValidateForA() {
 
 		validationService.validateWithCustomGroup(contract, CustomValidationGroups.A.class);
 
 	}
 
 	@Test
-	public void shouldValidateForB() {
+	public void shouldNotValidateForB() {
 
 		validationService.validateWithCustomGroup(contract, CustomValidationGroups.B.class);
 
@@ -60,7 +60,5 @@ public class R01_RunCustomGroupValidationTest extends AbstractTestNGSpringContex
 		validationService.validateWithCustomGroup(contract, Default.class);
 
 	}
-
-
 
 }

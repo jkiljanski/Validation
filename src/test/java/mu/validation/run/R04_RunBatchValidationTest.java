@@ -30,12 +30,31 @@ public class R04_RunBatchValidationTest extends AbstractTestNGSpringContextTests
 	}
 
 	@Test
-	public void shouldValidateForBatch() {
+	public void shouldNotValidateForZenonAndApproveDate() {
 		contract.sign();
 		contract.approve();
 
-		validationService.validateWithCustomGroup(contract);
+		validationService.validateContract(contract);
 
+	}
+
+	@Test
+	public void shouldNotValidateForZenon() {
+		contract.setApproveDate(midnight(2013,5,5));
+		contract.sign();
+		contract.approve();
+
+		validationService.validateContract(contract);
+	}
+
+	@Test
+	public void shouldValidateForNotZenon() {
+		contract.setApproveDate(midnight(2013,5,5));
+		contract.getPerson().setFirstName("Daniel");
+		contract.sign();
+		contract.approve();
+
+		validationService.validateContract(contract);
 	}
 
 

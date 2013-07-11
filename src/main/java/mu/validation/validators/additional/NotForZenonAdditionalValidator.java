@@ -11,14 +11,14 @@ public class NotForZenonAdditionalValidator implements AdditionalContractValidat
 	public static final String MESSAGE_TEMPLATE = "{validation.constraints.NotForZenonAdditionalValidator.message}";
 
 	@Override
-	public void validate(final Contract contract, final ConstraintValidatorContext constraintValidatorContext) {
+	public boolean validateAndReturnIsValid(final Contract contract, final ConstraintValidatorContext constraintValidatorContext) {
 		final Person farmer = contract.getPerson();
 		if(farmer == null){
-			return;
+			return IS_VALID;
 		}
 		final String firstName = farmer.getFirstName();
 		if(!"Zenon".equalsIgnoreCase(firstName)){
-			return;
+			return IS_VALID;
 		}
 
 		constraintValidatorContext
@@ -26,5 +26,7 @@ public class NotForZenonAdditionalValidator implements AdditionalContractValidat
 				.addNode("person")
 				.addNode("firstName")
 				.addConstraintViolation();
+
+		return IS_INVALID;
 	}
 }

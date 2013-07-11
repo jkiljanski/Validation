@@ -19,10 +19,11 @@ public class AdditionalContractValidationFacadeValidator implements ConstraintVa
 
 	@Override
 	public boolean isValid(final Contract value, final ConstraintValidatorContext context) {
-		//context.disableDefaultConstraintViolation();
+		context.disableDefaultConstraintViolation();
+		boolean isValid = true; // you can put OR // AND // XOR logic
 		for (AdditionalContractValidator additionalValidator : additionalValidators) {
-			additionalValidator.validate(value, context);
+			isValid &= additionalValidator.validateAndReturnIsValid(value, context);
 		}
-		return true;
+		return isValid;
 	}
 }
